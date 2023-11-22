@@ -48,9 +48,6 @@ class _ScanState extends State<Scan> {
   }
 
   Widget _getMainWidget() {
-    return CameraView(
-        controller: controller
-    );
     if (croppedImagePath != "") {
       return ImageView(imagePath: croppedImagePath);
     }
@@ -150,7 +147,7 @@ class _ScanState extends State<Scan> {
     final String dirPath = '${extDir.path}/Pictures/flutter_test';
     await Directory(dirPath).create(recursive: true);
     final String filePath = '$dirPath/${timestamp()}.jpg';
-
+    //if the camera is busy
     if (controller.value.isTakingPicture) {
       return "";
     }
