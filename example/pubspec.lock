@@ -100,9 +100,11 @@ packages:
   edge_detection:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: "794db73a985dc84c78f2fb1c133e744412dfbd63"
+      url: "https://github.com/mauphuong/edge_detection.git"
+    source: git
     version: "0.0.1"
   fake_async:
     dependency: transitive
