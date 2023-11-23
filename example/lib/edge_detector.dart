@@ -57,7 +57,7 @@ class EdgeDetector {
   Future<T> _subscribeToPort<T>(ReceivePort port) async {
     StreamSubscription? sub;
     
-    var completer = new Completer<T>();
+    var completer = Completer<T>();
     
     sub = port.listen((result) async {
       await sub?.cancel();

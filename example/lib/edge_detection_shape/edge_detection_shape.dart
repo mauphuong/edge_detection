@@ -20,10 +20,10 @@ class EdgeDetectionShape extends StatefulWidget {
   final EdgeDetectionResult edgeDetectionResult;
 
   @override
-  _EdgeDetectionShapeState createState() => _EdgeDetectionShapeState();
+  EdgeDetectionShapeState createState() => EdgeDetectionShapeState();
 }
 
-class _EdgeDetectionShapeState extends State<EdgeDetectionShape> {
+class EdgeDetectionShapeState extends State<EdgeDetectionShape> {
   late double edgeDraggerSize;
 
   late EdgeDetectionResult edgeDetectionResult;
@@ -34,7 +34,7 @@ class _EdgeDetectionShapeState extends State<EdgeDetectionShape> {
   late double top;
   late double left;
 
-  late Offset currentDragPosition;
+  late Offset currentDragPosition = Offset(100.0, 50.0);
 
   @override
   void didChangeDependencies() {

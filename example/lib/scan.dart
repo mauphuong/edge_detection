@@ -17,15 +17,15 @@ class Scan extends StatefulWidget {
   const Scan({super.key});
 
   @override
-  _ScanState createState() => _ScanState();
+  ScanState createState() => ScanState();
 }
 
-class _ScanState extends State<Scan> {
+class ScanState extends State<Scan> {
   late CameraController controller;
   late List<CameraDescription> cameras;
   late String imagePath="";
   late String croppedImagePath="";
-  late EdgeDetectionResult edgeDetectionResult = 0 as EdgeDetectionResult;
+  late EdgeDetectionResult edgeDetectionResult = EdgeDetectionResult(topLeft: Offset(0,0), topRight: Offset(0,0), bottomLeft: Offset(0,0), bottomRight: Offset(0,0));
 
   @override
   void initState() {
@@ -51,17 +51,17 @@ class _ScanState extends State<Scan> {
     if (croppedImagePath != "") {
       return ImageView(imagePath: croppedImagePath);
     }
-
-    if (imagePath == ""){// && edgeDetectionResult == null) {
+    else if (imagePath == ""){// && edgeDetectionResult == null) {
       return CameraView(
         controller: controller
       );
     }
-
-    return ImagePreview(
-      imagePath: imagePath,
-      edgeDetectionResult: edgeDetectionResult,
-    );
+    else {
+      return ImagePreview(
+        imagePath: imagePath,
+        edgeDetectionResult: edgeDetectionResult,
+      );
+    }
   }
 
   Future<void> checkForCameras() async {
@@ -100,16 +100,16 @@ class _ScanState extends State<Scan> {
         alignment: Alignment.bottomCenter,
         child: FloatingActionButton(
           child: const Icon(Icons.check),
-          onPressed: () {
+          onPressed: () async {
             if (croppedImagePath == "") {
-              _processImage(
+              await _processImage(
                 imagePath, edgeDetectionResult
               );
             }
 
             setState(() {
               imagePath = "";
-              edgeDetectionResult = 0 as EdgeDetectionResult;
+              //edgeDetectionResult = 0 as EdgeDetectionResult;
               croppedImagePath = "";
             });
           },
@@ -143,17 +143,16 @@ class _ScanState extends State<Scan> {
       return "";
     }
 
-    final Directory extDir = await getTemporaryDirectory();
-    final String dirPath = '${extDir.path}/Pictures/flutter_test';
-    await Directory(dirPath).create(recursive: true);
-    final String filePath = '$dirPath/${timestamp()}.jpg';
+    //final Directory extDir = await getTemporaryDirectory();
+    //final String dirPath = '${extDir.path}/Pictures/flutter_test';
+    //await Directory(dirPath).create(recursive: true);
+    //final String filePath = '$dirPath/${timestamp()}.jpg';
     //if the camera is busy
     if (controller.value.isTakingPicture) {
       return "";
     }
     XFile file;
     try {
-
       file = await controller.takePicture();
     } on CameraException catch (e) {
       log(e.toString());
@@ -206,12 +205,12 @@ class _ScanState extends State<Scan> {
 
   void _onGalleryButtonPressed() async {
     ImagePicker picker = ImagePicker();
-    PickedFile pickedFile = (await picker.pickImage(source: ImageSource.gallery)) as PickedFile;
-    final filePath = pickedFile.path;
+    XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final String? filePath = pickedFile?.path;
 
     log('Picture saved to $filePath');
 
-    _detectEdges(filePath);
+    _detectEdges(filePath!);
   }
 
   Padding _getBottomBar() {

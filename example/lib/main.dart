@@ -16,7 +16,7 @@ class EdgeDetectionApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scan(),
+      home: const Scan(),
     );
   }
 }

@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'edge_detection_platform_interface.dart';
 import 'dart:async';
 import 'dart:ffi';

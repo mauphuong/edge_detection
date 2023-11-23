@@ -17,10 +17,10 @@ class ImagePreview extends StatefulWidget {
   final EdgeDetectionResult edgeDetectionResult;
 
   @override
-  _ImagePreviewState createState() => _ImagePreviewState();
+  ImagePreviewState createState() => ImagePreviewState();
 }
 
-class _ImagePreviewState extends State<ImagePreview> {
+class ImagePreviewState extends State<ImagePreview> {
   GlobalKey imageWidgetKey = GlobalKey();
 
   @override

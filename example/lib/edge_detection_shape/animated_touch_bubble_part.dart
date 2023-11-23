@@ -7,10 +7,10 @@ class AnimatedTouchBubblePart extends StatefulWidget {
   final double size;
 
   @override
-  _AnimatedTouchBubblePartState createState() => _AnimatedTouchBubblePartState();
+  AnimatedTouchBubblePartState createState() => AnimatedTouchBubblePartState();
 }
 
-class _AnimatedTouchBubblePartState extends State<AnimatedTouchBubblePart> with SingleTickerProviderStateMixin  {
+class AnimatedTouchBubblePartState extends State<AnimatedTouchBubblePart> with SingleTickerProviderStateMixin  {
   late AnimationController _controller;
   late Animation<Color> _colorAnimation;
   late Animation<double> _sizeAnimation;

@@ -14,10 +14,10 @@ class TouchBubble extends StatefulWidget {
   final Function onDragFinished;
 
   @override
-  _TouchBubbleState createState() => _TouchBubbleState();
+  TouchBubbleState createState() => TouchBubbleState();
 }
 
-class _TouchBubbleState extends State<TouchBubble> {
+class TouchBubbleState extends State<TouchBubble> {
   bool dragging = false;
 
   @override

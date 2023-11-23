@@ -9,10 +9,10 @@ class ImageView extends StatefulWidget {
   final String imagePath;
 
   @override
-  _ImageViewState createState() => _ImageViewState();
+  ImageViewState createState() => ImageViewState();
 }
 
-class _ImageViewState extends State<ImageView> {
+class ImageViewState extends State<ImageView> {
   GlobalKey imageWidgetKey = GlobalKey();
 
   @override
