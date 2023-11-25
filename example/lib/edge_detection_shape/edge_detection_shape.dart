@@ -34,7 +34,7 @@ class EdgeDetectionShapeState extends State<EdgeDetectionShape> {
   late double top;
   late double left;
 
-  late Offset currentDragPosition = Offset(100.0, 50.0);
+  late Offset currentDragPosition = Offset(1.0, 5.0);
 
   @override
   void didChangeDependencies() {
@@ -127,7 +127,7 @@ class EdgeDetectionShapeState extends State<EdgeDetectionShape> {
     ];
 
     onDragFinished() {
-      currentDragPosition = 0 as Offset;
+      //currentDragPosition = 0 as Offset;
       setState(() {});
     }
 

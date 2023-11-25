@@ -88,8 +88,9 @@ class EdgeDetection {
   }
 
   static DynamicLibrary _getDynamicLibrary() {
+    const library = "libnative_edge_detection.so";
     final DynamicLibrary nativeEdgeDetection = Platform.isAndroid
-        ? DynamicLibrary.open("libnative_edge_detection.so")
+        ? DynamicLibrary.open(library)
         : DynamicLibrary.process();
     return nativeEdgeDetection;
   }

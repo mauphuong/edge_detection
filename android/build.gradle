@@ -12,6 +12,12 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
+    rootProject.allprojects {
+        repositories {
+            google()
+            jcenter()
+        }
+    }
 }
 
 allprojects {
@@ -55,7 +61,7 @@ android {
             cmake {
                 cppFlags '-frtti -fexceptions -std=c++11'
                 arguments "-DANDROID_STL=c++_shared"
-                //abiFilters 'armeabi-v7a', 'arm64-v8a'
+                abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
             }
         }
     }

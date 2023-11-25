@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.12.0)
 include_directories(../include)
 add_library(lib_opencv SHARED IMPORTED)
-#set(EDGE_DETECTION_LIB_DIR "../example/lib/")
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
+#set(EDGE_DETECTION_LIB_DIR "../example/android/app/src/main")
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${EDGE_DETECTION_LIB_DIR}/lib)
 set_target_properties(lib_opencv PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libopencv_java4.so)
 set(EDGE_DETECTION_DIR "../ios/Classes")
 set(SOURCES

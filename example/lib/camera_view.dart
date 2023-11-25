@@ -12,17 +12,23 @@ class CameraView extends StatelessWidget {
   Widget build(BuildContext context) {
     return _getCameraPreview();
   }
-  
+
   Widget _getCameraPreview() {
     if (controller == null || !controller.value.isInitialized) {
       return Container();
     }
 
-    return Center(
-      child: AspectRatio(
-        aspectRatio: controller.value.aspectRatio,
-        child: CameraPreview(controller)
-      )
+    return RotatedBox(
+      quarterTurns: 0,
+      child: Transform.scale(
+        scale: 1 ,/// controller.value.aspectRatio,
+        child: Center(
+          child: AspectRatio(
+            aspectRatio: controller.value.aspectRatio,
+            child: CameraPreview(controller),
+          ),
+        ),
+      ),
     );
   }
 }

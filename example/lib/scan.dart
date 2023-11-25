@@ -21,17 +21,17 @@ class Scan extends StatefulWidget {
 }
 
 class ScanState extends State<Scan> {
-  late CameraController controller;
+  late final CameraController controller;
   late List<CameraDescription> cameras;
   late String imagePath="";
   late String croppedImagePath="";
-  late EdgeDetectionResult edgeDetectionResult = EdgeDetectionResult(topLeft: Offset(0,0), topRight: Offset(0,0), bottomLeft: Offset(0,0), bottomRight: Offset(0,0));
+  late EdgeDetectionResult edgeDetectionResult = EdgeDetectionResult(topLeft: Offset(0.2,0.2), topRight: Offset(0.2,0.5), bottomLeft: Offset(0.5,0.2), bottomRight: Offset(0.5,0.5));
 
   @override
   void initState() {
     super.initState();
     checkForCameras().then((value) {
-      _initializeController();
+    _initializeController();
     });
   }
 
@@ -68,7 +68,8 @@ class ScanState extends State<Scan> {
     cameras = await availableCameras();
   }
 
-  void _initializeController() {
+  Future<void> _initializeController() async {
+
     checkForCameras();
     if (cameras.isEmpty) {
       log('No cameras detected');
@@ -86,6 +87,7 @@ class ScanState extends State<Scan> {
       }
       setState(() {});
     });
+    await controller.lockCaptureOrientation();
   }
 
   @override

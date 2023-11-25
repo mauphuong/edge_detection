@@ -12,7 +12,7 @@ class AnimatedTouchBubblePart extends StatefulWidget {
 
 class AnimatedTouchBubblePartState extends State<AnimatedTouchBubblePart> with SingleTickerProviderStateMixin  {
   late AnimationController _controller;
-  late Animation<Color> _colorAnimation;
+  late Animation<Color?> _colorAnimation;// = ColorTween(begin: Colors.blue, end: Colors.red).animate(_controller);
   late Animation<double> _sizeAnimation;
 
   @override
@@ -27,6 +27,7 @@ class AnimatedTouchBubblePartState extends State<AnimatedTouchBubblePart> with S
       end: 1.0
     ).animate(_controller);
 
+    _colorAnimation = ColorTween(begin: Colors.blue, end: Colors.red).animate(_controller);
 
     _controller.repeat();
     super.didChangeDependencies();
